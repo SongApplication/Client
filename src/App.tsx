@@ -1,24 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import SongsLandingPage from './pages/LandingPage/SongsLandingPage';
+import AddSong from './pages/ADD/AddSong';
+import { Route, Routes } from "react-router-dom";
+import EditSong from './pages/EDIT/EditSong';
+import WarpsComponent from './pages/WarpsComponent';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <WarpsComponent/>
     </div>
   );
 }
