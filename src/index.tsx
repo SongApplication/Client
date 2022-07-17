@@ -8,9 +8,9 @@ import { applyMiddleware, combineReducers, createStore } from 'redux'
 import reducer from './redux/reducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { myStore } from './redux/store';
 
-const myStore = createStore(combineReducers({ sng: reducer }),applyMiddleware(thunk))
-export type RootState = ReturnType<typeof myStore.getState>
+
 // export type AppDispatch = typeof myStore.dispatch
 
 const root = ReactDOM.createRoot(

@@ -17,7 +17,7 @@ import { NewspaperOutlined } from "@mui/icons-material";
 
 
 
-const AddSong = (props:any) => {
+const AddSong = (props: any) => {
 
     const [newSong, setNewSong] = useState({ title: " ", artist: " ", length: 0, price: 0, genre: " " })
     // const [gener, setGener] = useState('');
@@ -30,7 +30,7 @@ const AddSong = (props:any) => {
     // }
 
     const addNewSong = async () => {
-        
+
         try {
             console.log(newSong);
             props.addNewSongs(newSong);
@@ -42,7 +42,7 @@ const AddSong = (props:any) => {
 
         //  axios({url:"http://localhost:8080/songs/AddSongs", method:'POST',data:newSong})
         // .then(res => {
-            
+
         //     props.add(newSong);
         // }
         // ).catch(err => {
@@ -64,7 +64,7 @@ const AddSong = (props:any) => {
 
                     <form>
                         <ul className="form-list">
-                       
+
                             <li className="form-list__row">
                                 <TextField id="standard-basic" label="title of song" variant="standard" onChange={(val) => { setNewSong({ ...newSong, title: val.target.value }) }} />
                             </li>
@@ -77,16 +77,23 @@ const AddSong = (props:any) => {
                             <li className="form-list__row">
                                 <TextField id="standard-basic" label="price of song" type="number" variant="standard" onChange={(val) => { setNewSong({ ...newSong, price: parseFloat(val.target.value) }) }} />
                             </li>
-                            <InputLabel id="demo-simple-select-label">Gener</InputLabel>
-                            <Box sx={{ minWidth: 120 }} >
-                                <FormControl>
-                                    <Select labelId="demo-simple-select-label" id="demo-simple-select" value={newSong.genre} label="Gener" onChange={(val) => { setNewSong({ ...newSong, genre: val.target.value }) }} >
-                                        {typeGener.map((item, key) =>
-                                            <MenuItem key={key} value={item}>{item}</MenuItem>
-                                        )}
-                                    </Select>
-                                </FormControl>
-                            </Box>
+
+                            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    value={newSong.genre}
+                                    label="Genre"
+                                    onChange={(val) => { setNewSong({ ...newSong, genre: val.target.value }) }}
+                                >
+
+                                    {typeGener.map((item, key) =>
+                                        <MenuItem key={key} value={item}>{item}</MenuItem>
+                                    )}
+                                </Select>
+                            </FormControl>
+
                             <li>
                                 <Stack spacing={2} direction="row">
                                     <Button variant="contained" onClick={addNewSong}>ADD</Button>

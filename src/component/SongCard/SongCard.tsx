@@ -22,30 +22,10 @@ export default function SongCard(props: any) {
     const nav = useNavigate();
 
 
-    const deleteSong = (id: string) => {
-
-        try {
-            console.log(id);
-            props.del(id);
-        }
-        catch (e) {
-            console.log(e)
-        }
-
-        // axios.delete(`http://localhost:8080/songs/DeleteSong/${id}`).then(res => {
-        //     console.log(res.data);
-        //     props.del(id);
-        //     nav('/')
-        // }
-        // ).catch(err => {
-        //     console.log(err)
-        // });
-    }
-
     return (
         <div >
-            <Card sx={{ display: 'flex', width: 300, paddingRight: 10, margin: 2 }}>
-                <IconButton aria-label="delete" onClick={() => { deleteSong(props.song.id) }}>
+            <Card sx={{ display: 'flex', width: 300, paddingRight: 10, margin: 2, marginLeft: 50 }}>
+                <IconButton aria-label="delete" onClick={() => { props.del(props.song.id) }}>
                     <DeleteIcon />
                 </IconButton>
                 <IconButton onClick={() => { nav(`/songs/editSong/${props.song.id}`) }} >

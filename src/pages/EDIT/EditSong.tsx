@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import FormHelperText from '@mui/material/FormHelperText';
 
 
 
@@ -40,8 +41,6 @@ export default function EditSong(props: any) {
     const editSong = async () => {
 
         try {
-            // const url = 'http://localhost:8080/songs/UpdateSongs';
-            // const res = await axios.post(url,  songToEdit );
             props.editSongs(songToEdit);
         }
         catch (e) {
@@ -82,7 +81,25 @@ export default function EditSong(props: any) {
                             <li className="form-list__row">
                                 <TextField id="standard-basic" label="price of song" type="number" variant="standard" value={songToEdit.price} onChange={(val) => { setSongToEdit({ ...songToEdit, price: parseFloat(val.target.value) }) }} />
                             </li>
-                            <InputLabel id="demo-simple-select-label">Gener</InputLabel>
+
+                            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                                <InputLabel id="demo-simple-select-helper-label">Age</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                    value={songToEdit.genre}
+                                    defaultValue={songToEdit.genre}
+                                    label="Genre"
+                                    onChange={handleChange}
+                                >
+
+                                    {typeGener.map((item, key) =>
+                                        <MenuItem key={key} value={item}>{item}</MenuItem>
+                                    )}
+                                </Select>
+                            </FormControl>
+
+                            {/* <InputLabel id="demo-simple-select-label">Gener</InputLabel>
                             <Box sx={{ minWidth: 120 }}>
                                 <FormControl>
                                     <Select labelId="demo-simple-select-label" id="demo-simple-select" value={genre} label="Gener" defaultValue={songToEdit.genre} onChange={handleChange} >
@@ -91,7 +108,7 @@ export default function EditSong(props: any) {
                                         )}
                                     </Select>
                                 </FormControl>
-                            </Box>
+                            </Box> */}
                             <li>
                                 <Stack spacing={2} direction="row">
                                     <Button variant="contained" onClick={editSong}>EDIT</Button>

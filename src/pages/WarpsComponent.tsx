@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { RootState } from "..";
 import { addSongActions, deleteSongActions, editSongActions, saveSongs } from "../redux/actions";
 import { addSongThunk, deleteSongThunk, etidSongThunk, getSongsByArtistThunk, getSongsThunk } from "../redux/Thunks";
 import { SongModel } from "../SongModel";
@@ -9,10 +8,11 @@ import AddSong from "./ADD/AddSong";
 import EditSong from "./EDIT/EditSong";
 import SongsLandingPage from "./LandingPage/SongsLandingPage";
 import type { } from 'redux-thunk/extend-redux'
+import { RootState } from "../redux/store";
 
 
 export default function WarpsComponent() {
-    let arr: { songsArr: SongModel[] } = useSelector((state: RootState) => state.sng);
+    let songsReducer: { songsArr: SongModel[] } = useSelector((state: RootState) => state.sng);
 
     const dispatch = useDispatch();
 
@@ -37,9 +37,9 @@ export default function WarpsComponent() {
 
     return (
             <Routes>
-                <Route path="/" element={<SongsLandingPage songs={arr.songsArr} showAllSongs={showAllSongs} showSongsByArtist={showSongsByArtist} deleteSongs={deleteSongs} />} />
+                <Route path="/" element={<SongsLandingPage songs={songsReducer.songsArr} showAllSongs={showAllSongs} showSongsByArtist={showSongsByArtist} deleteSongs={deleteSongs} />} />
                 <Route path="/songs/addSong" element={<AddSong addNewSongs={addNewSongs} />} />
-                <Route path="/songs/editSong/:id" element={<EditSong songs={arr.songsArr} editSongs={editSongs} />} />
+                <Route path="/songs/editSong/:id" element={<EditSong songs={songsReducer.songsArr} editSongs={editSongs} />} />
             </Routes>
     )
 
